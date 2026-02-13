@@ -127,6 +127,18 @@ export interface Database {
           description: string | null
           created_at: string
         }
+        Insert: {
+          id?: string
+          name: string
+          description?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          description?: string | null
+          created_at?: string
+        }
       }
       skills: {
         Row: {
@@ -134,6 +146,18 @@ export interface Database {
           name: string
           category: string | null
           created_at: string
+        }
+        Insert: {
+          id?: string
+          name: string
+          category?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          category?: string | null
+          created_at?: string
         }
       }
       jobs: {
@@ -231,6 +255,36 @@ export interface Database {
           created_at: string
           updated_at: string
         }
+        Insert: {
+          id?: string
+          job_id: string
+          client_id: string
+          freelancer_id: string
+          proposal_id?: string | null
+          agreed_price: number
+          platform_fee: number
+          freelancer_earnings: number
+          estimated_days?: number | null
+          status?: 'active' | 'completed' | 'disputed' | 'cancelled'
+          completed_at?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          job_id?: string
+          client_id?: string
+          freelancer_id?: string
+          proposal_id?: string | null
+          agreed_price?: number
+          platform_fee?: number
+          freelancer_earnings?: number
+          estimated_days?: number | null
+          status?: 'active' | 'completed' | 'disputed' | 'cancelled'
+          completed_at?: string | null
+          created_at?: string
+          updated_at?: string
+        }
       }
       conversations: {
         Row: {
@@ -241,6 +295,24 @@ export interface Database {
           participant_2: string
           last_message_at: string
           created_at: string
+        }
+        Insert: {
+          id?: string
+          job_id?: string | null
+          contract_id?: string | null
+          participant_1: string
+          participant_2: string
+          last_message_at?: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          job_id?: string | null
+          contract_id?: string | null
+          participant_1?: string
+          participant_2?: string
+          last_message_at?: string
+          created_at?: string
         }
       }
       messages: {
@@ -260,6 +332,14 @@ export interface Database {
           read?: boolean
           created_at?: string
         }
+        Update: {
+          id?: string
+          conversation_id?: string
+          sender_id?: string
+          content?: string
+          read?: boolean
+          created_at?: string
+        }
       }
       payments: {
         Row: {
@@ -274,6 +354,124 @@ export interface Database {
           delay_penalty: number
           released_at: string | null
           created_at: string
+        }
+        Insert: {
+          id?: string
+          contract_id: string
+          freelancer_id: string
+          client_id: string
+          amount: number
+          platform_fee: number
+          freelancer_earnings: number
+          status?: 'pending' | 'released' | 'refunded'
+          delay_penalty?: number
+          released_at?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          contract_id?: string
+          freelancer_id?: string
+          client_id?: string
+          amount?: number
+          platform_fee?: number
+          freelancer_earnings?: number
+          status?: 'pending' | 'released' | 'refunded'
+          delay_penalty?: number
+          released_at?: string | null
+          created_at?: string
+        }
+      }
+      freelancer_roles: {
+        Row: {
+          id: string
+          freelancer_id: string
+          role_id: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          freelancer_id: string
+          role_id: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          freelancer_id?: string
+          role_id?: string
+          created_at?: string
+        }
+      }
+      freelancer_portfolios: {
+        Row: {
+          id: string
+          freelancer_id: string
+          title: string
+          description: string | null
+          url: string | null
+          image_url: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          freelancer_id: string
+          title: string
+          description?: string | null
+          url?: string | null
+          image_url?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          freelancer_id?: string
+          title?: string
+          description?: string | null
+          url?: string | null
+          image_url?: string | null
+          created_at?: string
+        }
+      }
+      freelancer_skills: {
+        Row: {
+          id: string
+          freelancer_id: string
+          skill_id: string
+          proficiency_level: 'beginner' | 'intermediate' | 'expert'
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          freelancer_id: string
+          skill_id: string
+          proficiency_level?: 'beginner' | 'intermediate' | 'expert'
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          freelancer_id?: string
+          skill_id?: string
+          proficiency_level?: 'beginner' | 'intermediate' | 'expert'
+          created_at?: string
+        }
+      }
+      job_skills: {
+        Row: {
+          id: string
+          job_id: string
+          skill_id: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          job_id: string
+          skill_id: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          job_id?: string
+          skill_id?: string
+          created_at?: string
         }
       }
     }

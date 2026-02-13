@@ -250,15 +250,18 @@ ALTER TABLE messages ENABLE ROW LEVEL SECURITY;
 ALTER TABLE payments ENABLE ROW LEVEL SECURITY;
 
 -- RLS Policies for users
+CREATE POLICY "Users can create own profile" ON users FOR INSERT WITH CHECK (auth.uid() = id);
 CREATE POLICY "Users can view own profile" ON users FOR SELECT USING (auth.uid() = id);
 CREATE POLICY "Users can update own profile" ON users FOR UPDATE USING (auth.uid() = id);
 
 -- RLS Policies for freelancer_profiles
 CREATE POLICY "Anyone can view verified freelancers" ON freelancer_profiles FOR SELECT USING (true);
+CREATE POLICY "Freelancers can create own profile" ON freelancer_profiles FOR INSERT WITH CHECK (auth.uid() = user_id);
 CREATE POLICY "Freelancers can update own profile" ON freelancer_profiles FOR UPDATE USING (auth.uid() = user_id);
 
 -- RLS Policies for client_profiles
 CREATE POLICY "Anyone can view client profiles" ON client_profiles FOR SELECT USING (true);
+CREATE POLICY "Clients can create own profile" ON client_profiles FOR INSERT WITH CHECK (auth.uid() = user_id);
 CREATE POLICY "Clients can update own profile" ON client_profiles FOR UPDATE USING (auth.uid() = user_id);
 
 -- RLS Policies for roles and skills (public read)
